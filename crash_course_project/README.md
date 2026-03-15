@@ -1,19 +1,19 @@
-# Crash Course Project - Jeu de Devinette
+# Crash Course Project - Guessing Game
 
 ## Description
-Ce projet contient un jeu simple en Python pour debutants.
-L'ordinateur choisit un nombre aleatoire entre 1 et 100.
-Le joueur a 7 essais pour trouver le bon nombre.
+This project contains a simple Python game for beginners. 
+The computer chooses a random number between 1 and 100. 
+The player has 7 guesses to find the correct number.
 
 ## Concepts pratiques
 - Variables
-- Boucles (`for`, `while`)
+- Loop (`for`, `while`)
 - Conditions (`if`, `elif`, `else`)
-- Saisie utilisateur avec `input()`
-- Nombre aleatoire avec `random.randint()`
+- User input with `input()`
+- Random number with `random.randint()`
 
-## Lancer le jeu
-Depuis le dossier `crash_course_project`, execute :
+## Run the game
+From the 'crash_course_project' folder, run :
 
 ```bash
 python number_guessing_game.py
