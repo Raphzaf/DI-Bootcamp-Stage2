@@ -1,0 +1,57 @@
+{
+  "image_size": [
+    64,
+    64
+  ],
+  "batch_size": 32,
+  "seed": 1337,
+  "class_indices": {
+    "cat": 0,
+    "dog": 1
+  },
+  "output": "sigmoid = P(dog)",
+  "threshold": 0.5,
+  "split": {
+    "train": 20000,
+    "validation": 5000,
+    "test": 12500
+  },
+  "augmentation": {
+    "rotation_range": 45,
+    "width_shift_range": 0.15,
+    "height_shift_range": 0.15,
+    "zoom_range": 0.5,
+    "horizontal_flip": true,
+    "rescale": "1/255"
+  },
+  "architecture": "Conv32-Pool-Conv64-Pool-Conv128-Pool-Flatten-Dropout0.5-Dense128-Dense1(sigmoid)",
+  "optimizer": {
+    "name": "adam",
+    "learning_rate": 0.001
+  },
+  "callbacks": [
+    "EarlyStopping(val_loss, patience=4)",
+    "ReduceLROnPlateau(val_loss, factor=0.5, patience=2)"
+  ],
+  "results": {
+    "val_accuracy": 0.8388000130653381,
+    "val_loss": 0.3624894917011261
+  },
+  "runs": {
+    "augmented_fixed_12_epochs": {
+      "epochs": 12,
+      "time_s": 606
+    },
+    "augmented_early_stopping": {
+      "epochs_run": 20,
+      "time_s": 988,
+      "best_epoch": 20
+    },
+    "baseline_no_augmentation": {
+      "epochs_run": 13,
+      "time_s": 421,
+      "best_epoch": 9
+    }
+  },
+  "tensorflow_version": "2.21.0"
+}
