@@ -1,0 +1,20 @@
+Connected to: WeatherDemo
+[server] 2026-10-12 12:50:44,665 INFO Processing request of type ListResourcesRequest
+Resources: ['cities://list']
+[server] 2026-10-12 12:50:44,668 INFO Processing request of type ListToolsRequest
+Tools: ['get_weather']
+  get_weather: Return static weather data for a supported city (see the cities://list resource).  args=['city']
+[server] 2026-10-12 12:50:44,670 INFO Processing request of type ReadResourceRequest
+[server] 2026-10-12 12:50:44,671 INFO cities://list read
+cities://list ->
+Paris
+London
+NYC
+Tel Aviv
+[server] 2026-10-12 12:50:44,673 INFO Processing request of type CallToolRequest
+[server] 2026-10-12 12:50:44,673 INFO get_weather called with city='Paris'
+get_weather('Paris') -> {'city': 'Paris', 'temp_c': 21, 'condition': 'sunny', 'humidity_pct': 48}
+[server] 2026-10-12 12:50:44,675 INFO Processing request of type CallToolRequest
+[server] 2026-10-12 12:50:44,675 INFO get_weather called with city='Berlin'
+[server] 2026-10-12 12:50:44,675 WARNING unknown city 'Berlin'
+get_weather('Berlin') -> {'error': "City 'Berlin' not supported", 'supported': ['Paris', 'London', 'NYC', 'Tel Aviv']}
