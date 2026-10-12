@@ -173,6 +173,12 @@ Each exercise lives in `WeekN/DayM/<Exercise>/`. Every Jupyter notebook in Weeks
 | 4 | Daily Challenge | **Build a Tiny Agent with Tools (smolagents)**<br><sub>Tiny tool-calling agent with smolagents (teacher + student notebooks).</sub> | [📓 agentic_agent_student](https://colab.research.google.com/github/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day4/DailyChallenge/agentic_agent_student.ipynb) · [📓 agentic_agent_teacher](https://colab.research.google.com/github/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day4/DailyChallenge/agentic_agent_teacher.ipynb) · [📁](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/Week18/Day4/DailyChallenge) |
 | 5 | Mini-project | **Integrate third-party MCP servers: Research Notebook agent (Python app)**<br><sub>LLM-planned agent over 3 third-party MCP servers (arXiv, filesystem, fetch) + our own; retries, fallback, JSONL logs, Streamlit UI.</sub> | [📘 README](https://github.com/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day5/MiniProject/README.md) · [📁](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/Week18/Day5/MiniProject) |
 
+## Week 19
+
+| Day | Type | Exercise | Open |
+|---|---|---|---|
+| 1 | Mini-project | **Build your own MCP server to extend Part 1: paper-intel (Python app)**<br><sub>Our own paper-intel MCP server (rank_papers, extract_findings) composed with arXiv, filesystem and fetch servers; LLM re-planning on failures.</sub> | [📘 README](https://github.com/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week19/Day1/MiniProject/README.md) · [📁](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/Week19/Day1/MiniProject) |
+
 ## Other
 
 - [crash_course_project](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/crash_course_project)
