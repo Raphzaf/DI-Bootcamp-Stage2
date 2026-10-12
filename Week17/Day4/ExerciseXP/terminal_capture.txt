@@ -1,0 +1,17 @@
+Connected to server: Demo (protocol 2025-11-25)
+[10/12/26 12:30:13] INFO     Processing request of type            server.py:733
+                             ListResourcesRequest                               
+                    INFO     Processing request of type            server.py:733
+                             ListResourceTemplatesRequest                       
+Resources: (no static resources)
+Resource templates: ['greeting://{name}']
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+Tools: ['add']
+  - add: Add two integers and return the sum. | input schema: {'properties': {'a': {'title': 'A', 'type': 'integer'}, 'b': {'title': 'B', 'type': 'integer'}}, 'required': ['a', 'b'], 'title': 'addArguments', 'type': 'object'}
+                    INFO     Processing request of type            server.py:733
+                             ReadResourceRequest                                
+greeting://hello -> Hello, hello!
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+add(1, 7) -> 8 | structured: {'result': 8}
