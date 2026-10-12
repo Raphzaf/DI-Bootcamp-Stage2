@@ -14,6 +14,8 @@ Part 2 adds **`paper-intel`**, an MCP server of our own. It brings the two capab
 Both tools have explicit input schemas (type hints and docstrings) and **typed output schemas** (pydantic
 models: `RankResult`, `FindingsResult`), which MCP clients receive as `outputSchema`.
 
+![Streamlit UI](screenshot_streamlit.png)
+
 ## One orchestration: our server and 2+ external servers
 
 ```
@@ -67,7 +69,40 @@ To test re-planning, set `FAULT_INJECT=paper_intel__rank_papers:1` (the first ca
 
 ## Test scenarios (real runs, Ollama `qwen2.5:3b` on CPU, in `sample_output/`)
 
-Run logs and briefs for the nominal scenario and the re-planning scenario (`FAULT_INJECT`) are added to `sample_output/` after the end-to-end runs.
+**1. Nominal: "Find 3 recent arXiv papers on LoRA fine-tuning of large language models and save a brief"**
+([console](sample_output/console_nominal.txt) · [log](sample_output/run_nominal.jsonl) · [brief](sample_output/nominal_brief.md))
+
+| Step | Tool chosen by the LLM | Server | Result |
+|---|---|---|---|
+| 1 | `arxiv__search_papers` (relevance, 5 results) | third-party | 5 papers |
+| 2 | `paper_intel__rank_papers` (top_k 3; the LLM set `recency_weight` 1) | **ours** | 3 papers kept, with score breakdown |
+| 3 | `paper_intel__extract_findings` (ranked ids) | **ours** | 3 quoted findings, 3 references, `brief_markdown` |
+| 4 | `filesystem__write_file` | third-party | brief saved |
+
+Outcome: `status: done`, 4 calls, 0 failures, 3 servers. Every finding is a real sentence from the paper's abstract
+(e.g. *"LoRAFusion achieves up to 1.96× … end-to-end speedup compared to Megatron-LM"* [2]).
+
+**2. Re-planning on failures: `FAULT_INJECT="arxiv__search_papers:1,paper_intel__rank_papers:1"`** (RAG for QA)
+([console](sample_output/console_replan_fault_inject.txt) · [log](sample_output/run_replan_fault_inject.jsonl) · [brief](sample_output/replan_brief.md))
+
+- The first search fails. The LLM **re-plans with a different query** (it drops the exact-phrase quotes), and the call succeeds.
+- The first `rank_papers` call fails. The LLM retries it once; the loop guard allows one retry of a call that failed.
+  The call succeeds, and the run continues: `extract_findings`, then `write_file`.
+- Outcome: `status: done`, 6 calls, 2 failures (both injected), `fault_injected` events in the log.
+
+**3. Checks that need no LLM** (`tests/smoke_test.py`):
+- typed outputs over STDIO;
+- duplicates removed and an **off-topic paper rejected** by `rank_papers`;
+- an injected fault returns an error without retries, then the next call succeeds;
+- bad input returns a tool error the LLM can act on;
+- an unknown tool returns a readable error;
+- a timeout is retried, each attempt is logged, then a clean error is returned.
+
+**What the runs show honestly** (small 3B model on CPU):
+- the LLM sometimes picks its own file name instead of the one requested;
+- when an abstract has no explicit result sentence, `extract_findings` falls back to its most topic-relevant
+  sentence, which can be a background statement (finding [1] in run 1, [2] in run 2);
+- with GroqCloud `llama-3.3-70b-versatile` the plans are more precise. The client and our server are the same.
 
 ## Files
 
