@@ -1,0 +1,30 @@
+  "arxiv": "uvx arxiv-mcp-server --storage-path ./workspace/papers",
+  "filesystem": "npx -y @modelcontextprotocol/server-filesystem ./workspace",
+  "fetch": "uvx mcp-server-fetch",
+  "research": "/usr/bin/python ./research_tools_server.py"
+ },
+ "max_steps": 12,
+ "tool_timeout_s": 90.0,
+ "tool_retries": 2
+}
+[server OK ] arxiv      third-party search_papers, get_abstract, export_citations
+[server OK ] filesystem third-party read_text_file, write_file, list_directory
+[server OK ] fetch      third-party fetch
+[server OK ] research   ours        clean_citations, assemble_brief
+
+[step 1] -> arxiv__search_papers({"query": "LoRA fine-tuning AND language model", "max_results": 3, "sort_by": "relevance"})
+[step 1] <- ok in 0.5s: { "returned": 3, "start": 0, "abstract_mode": "snippet", "papers": [ { "id": "2507.18302", "versioned_id": "2507.18302v1", "title": "LoRA-Leak: Membership Inference Attacks Against LoRA Fine-tuned Language Models", "authors": [ "Delong Ran", "Xinlei He", "Tianshuo Cong", "Anyu Wang", "Qi Li", "Xiaoy… (+2060 chars)
+
+[step 2] -> research__clean_citations({"papers": "['2507.18302', '2310.08659', '2502.01378']"})
+[step 2] <- ok in 0.4s: { "count": 3, "references": [ "[1] Delong Ran et al. (2025). LoRA-Leak: Membership Inference Attacks Against LoRA Fine-tuned Language Models. arXiv:2507.18302", "[2] Yixiao Li et al. (2023). LoftQ: LoRA-Fine-Tuning-Aware Quantization for Large Language Models. arXiv:2310.08659", "[3] Guanduo Chen et… (+128 chars)
+
+[step 3] -> research__assemble_brief({"references": ["[1] Delong Ran et al. (2025). LoRA-Leak: Membership Inference Attacks Against LoRA Fine-tuned Language Models. arXiv:2507.18302", "[2] Yixiao Li et al. (2023). LoftQ: LoRA-Fine-Tuning-Aware Quantization for Large Language Models. arXiv:2310.08659", "[3] Guanduo Chen et al. (2025). C… (+357 chars))
+[step 3] <- ok in 0.0s: # Research brief: LoRA fine-tuning of large language models _Generated 2026-10-12 by the Research Notebook agent._ ## Summary This brief collects 3 recent arXiv papers on LoRA fine-tuning of large language models; see the key findings below. ## Key findings - LoRA significantly alleviates memory con… (+529 chars)
+
+[step 4] -> filesystem__write_file({"content": "# Research brief: LoRA fine-tuning of large language models\n\n_Generated 2026-10-12 by the Research Notebook agent._\n\n## Summary\nThis brief collects 3 recent arXiv papers on LoRA fine-tuning of large language models; see the key findings below.\n\n## Key findings\n- LoRA significant… (+653 chars))
+[step 4] <- ok in 0.0s: Successfully wrote to ./workspace/lora_brief.md
+
+=== FINAL ===
+The research brief has been successfully saved at the path: ./workspace/lora_brief.md You can now review or use this brief as needed.
+
+Run log: ./logs/run_20261012_180921.jsonl
