@@ -4,7 +4,7 @@ Solutions for the Developers Institute bootcamp: Python foundations, data analys
 
 Each exercise lives in `WeekN/DayM/<Exercise>/`. Every Jupyter notebook in Weeks 8–18 is **fully executed** (outputs, charts and written analyses are saved), and opens directly in Google Colab from the links below. The links point to the `main` branch and are publicly accessible.
 
-**Legend:** 📓 notebook (Colab) · 🐍 Python script · 📁 folder on GitHub
+**Legend:** 📓 notebook (Colab) · 🐍 Python script · 📘 app README · 📁 folder on GitHub
 
 ## Week 1
 
@@ -171,6 +171,7 @@ Each exercise lives in `WeekN/DayM/<Exercise>/`. Every Jupyter notebook in Weeks
 |---|---|---|---|
 | 4 | Exercise XP | **Agentic AI with RAG (Retrieval-Augmented Generation)**<br><sub>Agentic RAG: FAISS KB + Wikipedia tool, rule-based planner, cited answers.</sub> | [📓 Colab](https://colab.research.google.com/github/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day4/ExerciseXP/main.ipynb) · [📁](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/Week18/Day4/ExerciseXP) |
 | 4 | Daily Challenge | **Build a Tiny Agent with Tools (smolagents)**<br><sub>Tiny tool-calling agent with smolagents (teacher + student notebooks).</sub> | [📓 agentic_agent_student](https://colab.research.google.com/github/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day4/DailyChallenge/agentic_agent_student.ipynb) · [📓 agentic_agent_teacher](https://colab.research.google.com/github/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day4/DailyChallenge/agentic_agent_teacher.ipynb) · [📁](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/Week18/Day4/DailyChallenge) |
+| 5 | Mini-project | **Integrate third-party MCP servers: Research Notebook agent (Python app)**<br><sub>LLM-planned agent over 3 third-party MCP servers (arXiv, filesystem, fetch) + our own; retries, fallback, JSONL logs, Streamlit UI.</sub> | [📘 README](https://github.com/Raphzaf/DI-Bootcamp-Stage2/blob/main/Week18/Day5/MiniProject/README.md) · [📁](https://github.com/Raphzaf/DI-Bootcamp-Stage2/tree/main/Week18/Day5/MiniProject) |
 
 ## Other
 
